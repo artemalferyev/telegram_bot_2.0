@@ -27,7 +27,7 @@ def register_conversion_handlers(bot):
             amount = float(message.text)
             converted_amount, _ = conversion_func(amount)
 
-            final_amount = round(converted_amount * 1.42, -1)
+            final_amount = round(converted_amount * 1.40, -1)
 
             conversion_menu = InlineKeyboardMarkup()
             conversion_menu.add(InlineKeyboardButton("📞 Связаться с менеджером", callback_data="contact_manager"))

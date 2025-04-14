@@ -9,6 +9,3 @@ class TelegramBot:
         self.clients = {}
 
         register_handlers(self)
-
-    def run(self):
-        self.bot.polling(none_stop=True)

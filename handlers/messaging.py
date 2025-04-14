@@ -8,35 +8,24 @@ from state import (
 
 def register_messaging_handlers(bot):
     @bot.callback_query_handler(func=lambda call: call.data == "contact_manager")
-    def contact_manager(call: CallbackQuery):
-        client_id = call.message.chat.id
-
-        bot.send_message(
-            MANAGER_CHAT_ID,
-            f"📲 Клиент {client_id} хочет связаться с вами. Напишите им в ближайшее время."
-        )
-        bot.send_message(client_id, "📩 Ваш запрос принят. Менеджер свяжется с вами в ближайшее время!")
-
-        add_conversation(client_id, MANAGER_CHAT_ID)
-
-        back_to_conversion_menu = InlineKeyboardMarkup()
-        back_to_conversion_menu.add(InlineKeyboardButton("⬅ Назад", callback_data="conversion"))
-
-        bot.edit_message_reply_markup(client_id, call.message.message_id, reply_markup=back_to_conversion_menu)
-
     @bot.callback_query_handler(func=lambda call: call.data == "contact_manager_in_menu")
-    def contact_manager_from_menu(call: CallbackQuery):
-        client_id = call.message.chat.id
-
-        bot.send_message(MANAGER_CHAT_ID, f"📲 Клиент {client_id} хочет связаться с вами.")
-        bot.send_message(client_id, "📩 Ваш запрос принят. Менеджер свяжется с вами в ближайшее время!")
+    def contact_manager(call):
+        client_id = call.from_user.id
+        client_name = f"{call.from_user.first_name} {call.from_user.last_name or ''}".strip()
 
         add_conversation(client_id, MANAGER_CHAT_ID)
 
         back_to_main_menu = InlineKeyboardMarkup()
         back_to_main_menu.add(InlineKeyboardButton("⬅ Назад", callback_data="back_to_main"))
 
-        bot.edit_message_reply_markup(client_id, call.message.message_id, reply_markup=back_to_main_menu)
+        bot.answer_callback_query(call.id, "Менеджер скоро с вами свяжется!")
+
+        bot.send_message(
+            MANAGER_CHAT_ID,
+            f"👤 Новый запрос от клиента: [{client_name}](tg://user?id={client_id})\n\n"
+            f"ID: `{client_id}`",
+            parse_mode="Markdown"
+        )
 
     @bot.message_handler(commands=['clients'], func=lambda msg: msg.chat.id == MANAGER_CHAT_ID)
     def show_active_clients(msg: Message):
