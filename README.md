@@ -14,30 +14,55 @@ This Telegram bot is built to support the buyer-service **KUPIDON**, helping cli
 ## Project Structure
 
 ├── .idea/                   # IDE settings (e.g., PyCharm project files)
+
 ├── __pycache__/             # Compiled Python files
+
 ├── handlers/                # Modular bot feature handlers
+
 │   ├── __init__.py
+
 │   ├── contact.py
+
 │   ├── conversion.py
+
 │   ├── delivery.py
+
 │   ├── forwarding.py
+
 │   ├── handlers.py
+
 │   ├── messaging.py
+
 │   └── start.py
+
 ├── resources/               # Image files used in delivery UI
+
 │   ├── photo_2025-01-17 15.47.06.jpeg
+
 │   ├── photo_2025-01-17 15.47.09.jpeg
+
 │   ├── photo_2025-01-17 15.47.11.jpeg
+
 │   ├── photo_2025-01-17 15.47.13.jpeg
+
 │   ├── photo_2025-01-17 15.47.16.jpeg
+
 │   └── photo_2025-01-17 15.47.18.jpeg
+
 ├── LICENSE                  # Project license (MIT)
+
 ├── README.md                # Project overview and usage instructions
+
 ├── bot.py                   # Main entry point for starting the bot
+
 ├── config.py                # Configuration constants (token, manager ID, etc.)
+
 ├── currency.py              # Logic for exchange rate retrieval and conversion
+
 ├── keyboards.py             # Inline keyboard markup definitions
+
 ├── state.py                 # Tracks active client-manager conversations
+
 └── telegram_bot.py          # TelegramBot class and handler setup
 
 
