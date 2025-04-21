@@ -1,4 +1,4 @@
-# Telegram Bot for Buyer Service "KUPIDON" 
+# Telegram Bot 2.0 for Buyer Service "KUPIDON" 
 
 This Telegram bot is built to support the buyer-service **KUPIDON**, helping clients browse options, calculate currency conversions, and directly contact a manager. It serves as a virtual assistant for users looking to purchase goods from the USA, Europe, and Dubai.
 
