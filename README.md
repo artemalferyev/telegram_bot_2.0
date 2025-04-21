@@ -19,6 +19,8 @@ This Telegram bot is built to support the buyer-service **KUPIDON**, helping cli
 
 ├── handlers/                # Modular bot feature handlers
 
+   ├── __pycache__/  
+
    ├── __init__.py
 
    ├── contact.py
