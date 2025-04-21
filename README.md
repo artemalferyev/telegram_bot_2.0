@@ -19,35 +19,35 @@ This Telegram bot is built to support the buyer-service **KUPIDON**, helping cli
 
 ├── handlers/                # Modular bot feature handlers
 
-│   ├── __init__.py
+   ├── __init__.py
 
-│   ├── contact.py
+   ├── contact.py
 
-│   ├── conversion.py
+   ├── conversion.py
+   
+   ├── delivery.py
 
-│   ├── delivery.py
+   ├── forwarding.py
 
-│   ├── forwarding.py
+   ├── handlers.py
 
-│   ├── handlers.py
+   ├── messaging.py
 
-│   ├── messaging.py
-
-│   └── start.py
+   └── start.py
 
 ├── resources/               # Image files used in delivery UI
 
-│   ├── photo_2025-01-17 15.47.06.jpeg
+   ├── photo_2025-01-17 15.47.06.jpeg
 
-│   ├── photo_2025-01-17 15.47.09.jpeg
+   ├── photo_2025-01-17 15.47.09.jpeg
 
-│   ├── photo_2025-01-17 15.47.11.jpeg
+   ├── photo_2025-01-17 15.47.11.jpeg
 
-│   ├── photo_2025-01-17 15.47.13.jpeg
+   ├── photo_2025-01-17 15.47.13.jpeg
 
-│   ├── photo_2025-01-17 15.47.16.jpeg
+   ├── photo_2025-01-17 15.47.16.jpeg
 
-│   └── photo_2025-01-17 15.47.18.jpeg
+   └── photo_2025-01-17 15.47.18.jpeg
 
 ├── LICENSE                  # Project license (MIT)
 
@@ -76,28 +76,27 @@ This Telegram bot is built to support the buyer-service **KUPIDON**, helping cli
 ## Getting Started
 
 1. Clone the repository
-
 ```bash
 git clone https://github.com/your-username/kupidon-telegram-bot.git
 cd kupidon-telegram-bot
-
+```
 2. Install dependencies
-
+```bash
 pip install pyTelegramBotAPI requests
-
+```
 3. Set up configuration
-
+```bash
 Create a .env file or manually set the following values in config.py:
 
 TOKEN = "your_telegram_bot_token"
 MANAGER_CHAT_ID = 123456789  # Replace with the Telegram ID of the manager
 CBR_API_URL = "https://www.cbr-xml-daily.ru/daily_json.js"
 TELEGRAM_CATALOG_LINK = "https://t.me/kupidonbuyer"
-
+```
 4. Run the bot
-
+```bash
 python bot.py
-
+```
 The bot will start polling and be ready to respond to users.
 
 Resources
