@@ -1,10 +1,33 @@
+import json
+import os
+
+USER_FILE = "users.json"
+
+def load_user_ids():
+    if os.path.exists(USER_FILE):
+        with open(USER_FILE, "r") as f:
+            return set(json.load(f))
+    return set()
+
+def save_user_ids(user_ids):
+    with open(USER_FILE, "w") as f:
+        json.dump(list(user_ids), f)
+
+user_ids = load_user_ids()
+
 from telebot.types import Message
 from keyboards import get_inline_menu
 
 def register_start_handlers(bot):
     @bot.message_handler(commands=['start'])
     def start(message: Message):
+        username = message.from_user.username or message.from_user.first_name or "друг"
         first_name = message.from_user.first_name or "друг"
+        print(f"✅ Команда /start вызвана пользователем: {username} (ID: {message.from_user.id})")
+        user_id = message.from_user.id
+        if user_id not in user_ids:
+            user_ids.add(user_id)
+            save_user_ids(user_ids)
         bot.send_message(
             message.chat.id,
             (
