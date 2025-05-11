@@ -9,7 +9,7 @@ bot = TeleBot(TOKEN)
 
 def set_manager_commands():
     commands = [
-        BotCommand("start", "Приветствие"),
+        BotCommand("start", "Главное меню"),
         BotCommand("clients", "Показать активных клиентов")
     ]
     scope = BotCommandScopeChat(chat_id=MANAGER_CHAT_ID)
@@ -17,4 +17,4 @@ def set_manager_commands():
 
 register_handlers(bot)
 set_manager_commands()
-bot.polling(timeout=100)
+bot.polling(timeout=60)

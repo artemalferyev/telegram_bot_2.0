@@ -1,9 +1,17 @@
 from telebot.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 import os
 
-from config import MANAGER_CHAT_ID
+from config import MANAGER_CHAT_ID, TELEGRAM_CATALOG_LINK, TELEGRAM_REVIEWS
 from state import add_conversation, set_client_to_forward
 
+def create_main_menu():
+    markup = InlineKeyboardMarkup()
+    markup.add(InlineKeyboardButton("💱 Конвертация валют", callback_data="conversion"))
+    markup.add(InlineKeyboardButton("🛍 Каталог", url=TELEGRAM_CATALOG_LINK))
+    markup.add(InlineKeyboardButton("📦 Доставка", callback_data="delivery"))
+    markup.add(InlineKeyboardButton("🗣️ Отзывы", url=TELEGRAM_REVIEWS))
+    markup.add(InlineKeyboardButton("💬 Связаться с менеджером", callback_data="contact_manager"))
+    return markup
 
 def register_delivery_handlers(bot):
     @bot.callback_query_handler(func=lambda call: call.data == "delivery")
@@ -33,7 +41,7 @@ def register_delivery_handlers(bot):
             bot.send_photo(call.message.chat.id, photo2,  reply_markup=back_menu)
 
     back_menu = InlineKeyboardMarkup()
-    back_menu.add(InlineKeyboardButton("📞 Связаться с менеджером", callback_data="contact_manager"))
+    back_menu.add(InlineKeyboardButton("💬 Связаться с менеджером", callback_data="contact_manager"))
     back_menu.add(InlineKeyboardButton("⬅ Назад к выбору региона", callback_data="delivery_nophoto"))
     back_menu.add(InlineKeyboardButton("⬅ В главное меню", callback_data="back_to_main"))
 
@@ -62,3 +70,10 @@ def register_delivery_handlers(bot):
         set_client_to_forward(manager_id, client_id)
 
         bot.send_message(call.message.chat.id, f"Вы обратились к менеджеру. Ожидайте ответа.")
+
+    @bot.callback_query_handler(func=lambda call: call.data == "back_to_main")
+    def back_to_main(call: CallbackQuery):
+        # Delete the current message to clean up the UI
+        bot.delete_message(call.message.chat.id, call.message.message_id)
+        # Send main menu
+        bot.send_message(call.message.chat.id, "🏠 Главное меню. Выберите действие:", reply_markup=create_main_menu())

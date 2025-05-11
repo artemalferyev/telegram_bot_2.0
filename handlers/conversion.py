@@ -32,7 +32,7 @@ def register_conversion_handlers(bot):
             final_amount = round(converted_amount * 1.37 / 10) * 10
 
             conversion_menu = InlineKeyboardMarkup()
-            conversion_menu.add(InlineKeyboardButton("📞 Связаться с менеджером", callback_data="contact_manager"))
+            conversion_menu.add(InlineKeyboardButton("💬 Связаться с менеджером", callback_data="contact_manager"))
             conversion_menu.add(
                 InlineKeyboardButton("€ → ₽", callback_data="convert_eur_rub"),
                 InlineKeyboardButton("$ → ₽", callback_data="convert_usd_rub")
@@ -54,7 +54,7 @@ def register_conversion_handlers(bot):
             final_amount = round(converted_amount * 1.47 / 10) * 10
 
             conversion_menu = InlineKeyboardMarkup()
-            conversion_menu.add(InlineKeyboardButton("📞 Связаться с менеджером", callback_data="contact_manager"))
+            conversion_menu.add(InlineKeyboardButton("💬 Связаться с менеджером", callback_data="contact_manager"))
             conversion_menu.add(
                 InlineKeyboardButton("€ → ₽", callback_data="convert_eur_rub"),
                 InlineKeyboardButton("$ → ₽", callback_data="convert_usd_rub")
